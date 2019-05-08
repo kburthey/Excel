@@ -1,0 +1,24 @@
+Sub RemoveEmptyStrings()
+  Dim xlCalc As XlCalculation
+  Dim myC As Range
+  
+  With Application
+    .ScreenUpdating = False
+    xlCalc = .Calculation
+    .Calculation = xlCalculationManual
+    .EnableEvents = False
+    .DisplayAlerts = False
+  End With
+  
+  For Each myC In ActiveSheet.UsedRange.Cells
+    If myC.Value = "" Then myC.ClearContents
+  Next myC
+  
+  With Application
+    .ScreenUpdating = True
+    .EnableEvents = True
+    .DisplayAlerts = True
+    .Calculation = xlCalc
+  End With
+  
+End Sub
